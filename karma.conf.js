@@ -1,5 +1,8 @@
+var cssUtility = require('./karma/cssUtility');
+
 // Karma configuration
 module.exports = function (config) {
+
     config.set({
 
         frameworks: ['jasmine'],
@@ -36,6 +39,11 @@ module.exports = function (config) {
                     {
                         test: /\.vue$/,
                         loader: 'vue-loader',
+                        options: {                        
+                            loaders: cssUtility.cssLoaders({
+                                extract: false
+                            })
+                        }
                     },
                     {
                         test: /\.js$/,
@@ -45,7 +53,7 @@ module.exports = function (config) {
                         ],
                         exclude: __dirname + '/node_modules'
                     }
-                ]
+                ].concat(cssUtility.styleLoaders())
             }
         },
 
@@ -81,5 +89,5 @@ module.exports = function (config) {
         preprocessors: {
             'tests/index.js': ['webpack']
         }
-    })
+    });
 }
