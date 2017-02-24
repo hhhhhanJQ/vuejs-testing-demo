@@ -1,5 +1,5 @@
 <template>
-    <tr>    
+    <tr>
         <td>
             {{ task.taskname }}
         </td>
