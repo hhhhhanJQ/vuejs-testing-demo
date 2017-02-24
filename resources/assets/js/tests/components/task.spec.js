@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import TaskComponent from '../../components/task.vue';
-import Helper from "../helper";
+import TaskComponent from '../../components/Task.vue';
+import Helper from '../helper';
 
 describe('TaskComponent', () => {
 
@@ -17,7 +17,7 @@ describe('TaskComponent', () => {
         expect(vm.$el.textContent).toContain(props.task.author);
     });
 
-    it('should emit delete-task event when delete button is clicked', () => {
+    it('should emit delete-task event when delete method is called', () => {
         const props = {
             task: {
                 taskname: 'Testing',
@@ -26,12 +26,12 @@ describe('TaskComponent', () => {
             }
         };
 
-        const component = Helper.injectProps(TaskComponent, props);
-        spyOn(component, '$emit');
+        const vm = Helper.injectProps(TaskComponent, props);
+        spyOn(vm, '$emit');
 
-        component.deleteTask(1);
-        expect(component.$emit.calls.count()).toEqual(1);
-        expect(component.$emit).toHaveBeenCalledWith('delete-task', 1);
+        vm.deleteTask(1);
+        expect(vm.$emit.calls.count()).toEqual(1);
+        expect(vm.$emit).toHaveBeenCalledWith('delete-task', 1);
     });
 
 });
