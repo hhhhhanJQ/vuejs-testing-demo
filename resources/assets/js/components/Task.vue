@@ -16,7 +16,12 @@
 
 <script>
    export default {
-       props: ['task'],
+       props: {
+           task: {
+               type: Object,
+               required: true
+           }
+       },
        methods: {
            deleteTask: function(id) {
                this.$emit('delete-task', id);
